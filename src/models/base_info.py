@@ -4,9 +4,9 @@ class BaseInfo:
         self.__president: str = president
 
     @property
-    def school_code(self):
+    def school_code(self) -> str:
         return self.__school_code
 
     @property
-    def president(self):
+    def president(self) -> str:
         return self.__president
