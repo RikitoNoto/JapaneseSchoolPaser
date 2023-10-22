@@ -126,7 +126,7 @@ class TestFacultyParser(SingleSheetTestBase[list[Faculty]]):
     def test_should_parse_departments(self, path: str, exp: dict[str, list[str]]):
         faculties = self.parse(path)
         for faculty in faculties:
-            exp_departments: list[Department] = exp[faculty.name]
+            exp_departments: list[str] = exp[faculty.name]
             assert len(exp_departments) == len(faculty.departments)
             for department in faculty.departments:
                 assert department.name in exp_departments

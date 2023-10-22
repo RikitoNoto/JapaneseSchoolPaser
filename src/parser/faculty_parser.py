@@ -15,7 +15,7 @@ class FacultyParser(Parser):
             self._sheet,
         )
         if not base_cell:
-            raise ValueError('"学部"の文字が見つかりませんでした。')
+            return []
 
         row = base_cell.row + 3  # 学部の3行下から開始
         column = base_cell.column
