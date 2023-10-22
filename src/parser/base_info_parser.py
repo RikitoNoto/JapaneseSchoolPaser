@@ -1,5 +1,4 @@
 from typing import Optional
-from openpyxl.worksheet.worksheet import Worksheet
 from openpyxl.cell.cell import Cell
 from src.models.base_info import BaseInfo
 from src.parser.parser import Parser

@@ -1,5 +1,4 @@
 from typing import Optional
-from openpyxl.worksheet.worksheet import Worksheet
 from openpyxl.cell.cell import Cell
 from src.models.graduate_school import GraduateSchool, Major
 from src.parser.parser import Parser
@@ -37,7 +36,6 @@ class GraduateSchoolParser(Parser):
                     )
                 )
             else:
-                pass
                 for graduate_school in graduate_schools:
                     if graduate_school.name == graduate_school_name:
                         graduate_school.majors.append(
