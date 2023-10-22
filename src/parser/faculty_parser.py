@@ -1,7 +1,7 @@
 from typing import Optional
 from openpyxl.worksheet.worksheet import Worksheet
 from openpyxl.cell.cell import Cell
-from src.models.faculty import Faculty
+from src.models.faculty import Department, Faculty
 from src.parser.parser import Parser
 
 
@@ -22,13 +22,28 @@ class FacultyParser(Parser):
         faculties: list[Faculty] = []
         # 空白のセルが見つかるまで、下を検索
         while self._sheet.cell(row=row, column=column).value not in [None, ""]:
-            faculty = self._sheet.cell(row=row, column=column).value
+            faculty_name = self._sheet.cell(row=row, column=column).value
 
             # 初めて見つけた学科の場合は新規追加
-            if faculty not in [f.name for f in faculties]:
+            if faculty_name not in [f.name for f in faculties]:
                 faculties.append(
-                    Faculty(self._sheet.cell(row=row, column=column).value)
+                    Faculty(
+                        self._sheet.cell(row=row, column=column).value,
+                        [
+                            Department(
+                                self._sheet.cell(row=row, column=column + 2).value,
+                            )
+                        ],
+                    )
                 )
+            else:
+                for faculty in faculties:
+                    if faculty.name == faculty_name:
+                        faculty.departments.append(
+                            Department(
+                                self._sheet.cell(row=row, column=column + 2).value
+                            ),
+                        ),
             row += 1
 
         return faculties

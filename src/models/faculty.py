@@ -1,4 +1,4 @@
-class Departments:
+class Department:
     def __init__(self, name: str) -> None:
         self.__name: str = name
         pass
@@ -9,14 +9,14 @@ class Departments:
 
 
 class Faculty:
-    def __init__(self, name: str) -> None:
+    def __init__(self, name: str, departments: list[Department]) -> None:
         self.__name: str = name
-        pass
+        self.__departments: list[Department] = departments
 
     @property
     def name(self) -> str:
         return self.__name
 
     @property
-    def departments(self) -> list[Departments]:
-        return []
+    def departments(self) -> list[Department]:
+        return self.__departments
