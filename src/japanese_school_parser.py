@@ -9,7 +9,9 @@ from src.parser.school_parser import SchoolParser
 
 
 def parse_schools_to_dict(path: str) -> dict[str, Any]:
-    pass
+    schools = parse_schools_to_model(path)
+
+    return {"schools": [school.to_dict() for school in schools]}
 
 
 def parse_schools_to_model(path: str) -> list[School]:

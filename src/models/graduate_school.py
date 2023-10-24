@@ -1,4 +1,7 @@
-class Major:
+from src.models.model import Model
+
+
+class Major(Model):
     def __init__(self, name: str) -> None:
         self.__name: str = name
         pass
@@ -8,7 +11,7 @@ class Major:
         return self.__name
 
 
-class GraduateSchool:
+class GraduateSchool(Model):
     def __init__(self, name: str, majors: list[Major]) -> None:
         self.__name: str = name
         self.__majors: list[Major] = majors

@@ -1,6 +1,7 @@
 import os
+from typing import Any
 import pytest
-from src.japanese_school_parser import parse_schools_to_model
+from src.japanese_school_parser import parse_schools_to_dict, parse_schools_to_model
 from src.models.faculty import Department, Faculty
 from src.models.graduate_school import GraduateSchool, Major
 from src.models.school import School
@@ -284,6 +285,175 @@ def school_list_equal(school_list1: list[School], school_list2: list[School]) ->
         ),
     ],
 )
-def test_should_be_parse(source_path: str, expect_schools: list[School]):
+def test_should_be_parse_model(source_path: str, expect_schools: list[School]):
     schools = parse_schools_to_model(source_path)
     assert school_list_equal(schools, expect_schools)
+
+
+@pytest.mark.parametrize(
+    "source_path, expect_schools",
+    [
+        (
+            f"{os.path.dirname(__file__)}/files/multi_sheets1.xlsx",
+            {
+                "schools": [
+                    {
+                        "school_code": "F126310107644",
+                        "president": "ウスビ・サコ",
+                        "faculties": [
+                            {
+                                "name": "芸術学部",
+                                "departments": [
+                                    {
+                                        "name": "造形学科",
+                                    },
+                                ],
+                            },
+                            {
+                                "name": "デザイン学部",
+                                "departments": [
+                                    {
+                                        "name": "ビジュアルデザイン学科",
+                                    },
+                                    {
+                                        "name": "イラスト学科",
+                                    },
+                                    {
+                                        "name": "プロダクトデザイン学科",
+                                    },
+                                    {
+                                        "name": "建築学科",
+                                    },
+                                ],
+                            },
+                            {
+                                "name": "マンガ学部",
+                                "departments": [
+                                    {
+                                        "name": "マンガ学科",
+                                    },
+                                    {
+                                        "name": "アニメーション学科",
+                                    },
+                                ],
+                            },
+                            {
+                                "name": "人文学部",
+                                "departments": [
+                                    {
+                                        "name": "総合人文学科",
+                                    },
+                                ],
+                            },
+                            {
+                                "name": "ポピュラーカルチャー学部",
+                                "departments": [
+                                    {
+                                        "name": "ポピュラーカルチャー学科",
+                                    },
+                                ],
+                            },
+                            {
+                                "name": "メディア表現学部",
+                                "departments": [
+                                    {
+                                        "name": "メディア表現学科",
+                                    },
+                                ],
+                            },
+                            {
+                                "name": "国際文化学部",
+                                "departments": [
+                                    {
+                                        "name": "人文学科",
+                                    },
+                                    {
+                                        "name": "グローバルスタディーズ学科",
+                                    },
+                                ],
+                            },
+                        ],
+                        "graduate_schools": [
+                            {
+                                "name": "芸術研究科",
+                                "majors": [
+                                    {"name": "芸術専攻"},
+                                ],
+                            },
+                            {
+                                "name": "デザイン研究科",
+                                "majors": [
+                                    {"name": "デザイン専攻"},
+                                    {"name": "建築専攻"},
+                                ],
+                            },
+                            {
+                                "name": "マンガ研究科",
+                                "majors": [
+                                    {"name": "マンガ専攻"},
+                                ],
+                            },
+                            {
+                                "name": "人文学研究科",
+                                "majors": [
+                                    {"name": "人文学専攻"},
+                                ],
+                            },
+                        ],
+                    },
+                    {
+                        "school_code": "F126310107653",
+                        "president": "矢野　忠",
+                        "faculties": [
+                            {
+                                "name": "鍼灸学部",
+                                "departments": [
+                                    {
+                                        "name": "鍼灸学科",
+                                    },
+                                ],
+                            },
+                            {
+                                "name": "保健医療学部",
+                                "departments": [
+                                    {
+                                        "name": "柔道整復学科",
+                                    },
+                                    {
+                                        "name": "救急救命学科",
+                                    },
+                                ],
+                            },
+                            {
+                                "name": "看護学部",
+                                "departments": [
+                                    {
+                                        "name": "看護学科",
+                                    },
+                                ],
+                            },
+                        ],
+                        "graduate_schools": [
+                            {
+                                "name": "鍼灸学研究科",
+                                "majors": [
+                                    {"name": "鍼灸学専攻"},
+                                    {"name": "臨床鍼灸学専攻"},
+                                ],
+                            },
+                            {
+                                "name": "保健医療学研究科",
+                                "majors": [
+                                    {"name": "柔道整復学専攻"},
+                                ],
+                            },
+                        ],
+                    },
+                ]
+            },
+        ),
+    ],
+)
+def test_should_be_parse_dict(source_path: str, expect_schools: dict[str, Any]):
+    schools = parse_schools_to_dict(source_path)
+    assert schools == expect_schools
