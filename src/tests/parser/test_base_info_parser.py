@@ -31,3 +31,14 @@ class TestBaseInfoParser(SingleSheetTestBase[BaseInfo]):
     def test_should_parse_president(self, path: str, exp: str):
         base_info = self.parse(path)
         assert base_info.president == exp
+
+    @pytest.mark.parametrize(
+        "path, exp",
+        [
+            (SingleSheetTestBase.EXCEL_FILE_PATH_1, "北海道大学"),
+            (SingleSheetTestBase.EXCEL_FILE_PATH_2, "名古屋文理大学"),
+        ],
+    )
+    def test_should_parse_school_name(self, path: str, exp: str):
+        base_info = self.parse(path)
+        assert base_info.name == exp

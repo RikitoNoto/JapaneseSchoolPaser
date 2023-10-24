@@ -68,6 +68,15 @@ def graduate_school_equal(
 
 
 def school_equal(school1: School, school2: School) -> bool:
+    if school1.president != school2.president:
+        return False
+
+    if school1.school_code != school2.school_code:
+        return False
+
+    if school1.name != school2.name:
+        return False
+
     if len(school1.faculties) != len(school2.faculties):
         return False
 
@@ -130,6 +139,7 @@ def school_list_equal(school_list1: list[School], school_list2: list[School]) ->
             f"{os.path.dirname(__file__)}/files/multi_sheets1.xlsx",
             [
                 School(
+                    name="京都精華大学",
                     school_code="F126310107644",
                     president="ウスビ・サコ",
                     faculties=[
@@ -234,6 +244,7 @@ def school_list_equal(school_list1: list[School], school_list2: list[School]) ->
                     ],
                 ),
                 School(
+                    name="明治国際医療大学",
                     school_code="F126310107653",
                     president="矢野　忠",
                     faculties=[
@@ -298,6 +309,7 @@ def test_should_be_parse_model(source_path: str, expect_schools: list[School]):
             {
                 "schools": [
                     {
+                        "name": "京都精華大学",
                         "school_code": "F126310107644",
                         "president": "ウスビ・サコ",
                         "faculties": [
@@ -402,6 +414,7 @@ def test_should_be_parse_model(source_path: str, expect_schools: list[School]):
                         ],
                     },
                     {
+                        "name": "明治国際医療大学",
                         "school_code": "F126310107653",
                         "president": "矢野　忠",
                         "faculties": [

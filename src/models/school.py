@@ -6,14 +6,13 @@ from models.graduate_school import GraduateSchool
 class School(BaseInfo):
     def __init__(
         self,
-        school_code="",
-        president="",
         faculties: list[Faculty] = [],
         graduate_schools: list[GraduateSchool] = [],
+        **kwargs,
     ) -> None:
         self.__faculties = faculties
         self.__graduate_schools = graduate_schools
-        super().__init__(school_code, president)
+        super().__init__(**kwargs)
 
     @property
     def faculties(self) -> list[Faculty]:

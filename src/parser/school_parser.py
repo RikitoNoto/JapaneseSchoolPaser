@@ -22,6 +22,7 @@ class SchoolParser(Parser):
         ).parse()
 
         return School(
+            name=base_info.name,
             school_code=base_info.school_code,
             president=base_info.president,
             faculties=faculties,
