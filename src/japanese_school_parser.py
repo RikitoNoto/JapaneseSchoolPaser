@@ -1,3 +1,4 @@
+import json
 from typing import Any
 
 from openpyxl import load_workbook
@@ -26,3 +27,16 @@ def parse_schools_to_model(path: str) -> list[School]:
     book.close()
 
     return schools
+
+
+def output_json(source_path: str, out_file_path: str) -> None:
+    schools = parse_schools_to_dict(source_path)
+    with open(out_file_path, "w") as file:
+        json.dump(schools, file)
+
+
+if __name__ == "__main__":
+    import sys
+
+    args = sys.argv
+    output_json(args[0], args[1])
