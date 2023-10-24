@@ -1,8 +1,8 @@
 from openpyxl.worksheet.worksheet import Worksheet
 import pytest
-from src.models.base_info import BaseInfo
-from src.parser.base_info_parser import BaseInfoParser
-from src.parser.parser import Parser
+from models.base_info import BaseInfo
+from parser.base_info_parser import BaseInfoParser
+from parser.parser import Parser
 from tests.parser.single_sheet_test_base import SingleSheetTestBase
 
 

@@ -5,12 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Debug Tests",
+            "name": "Python: Debug",
             "type": "python",
             "request": "launch",
-            "program": "${file}",
-            "purpose": [
-                "debug-test"
+            "program": "japanese_school_parser.py",
+            "cwd": "${workspaceFolder}/src",
+            "args": [
+                "tests/files/multi_sheets1.xlsx",
+                "output.json",
             ],
             "console": "integratedTerminal",
             "justMyCode": false

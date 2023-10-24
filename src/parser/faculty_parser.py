@@ -1,7 +1,7 @@
 from typing import Optional
 from openpyxl.cell.cell import Cell
-from src.models.faculty import Department, Faculty
-from src.parser.parser import Parser
+from models.faculty import Department, Faculty
+from parser.parser import Parser
 
 
 class FacultyParser(Parser):

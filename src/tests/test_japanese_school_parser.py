@@ -1,10 +1,10 @@
 import os
 from typing import Any
 import pytest
-from src.japanese_school_parser import parse_schools_to_dict, parse_schools_to_model
-from src.models.faculty import Department, Faculty
-from src.models.graduate_school import GraduateSchool, Major
-from src.models.school import School
+from japanese_school_parser import parse_schools_to_dict, parse_schools_to_model
+from models.faculty import Department, Faculty
+from models.graduate_school import GraduateSchool, Major
+from models.school import School
 
 
 def major_equal(major1: Major, major2: Major) -> bool:

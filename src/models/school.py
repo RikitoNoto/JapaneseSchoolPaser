@@ -1,6 +1,6 @@
-from src.models.base_info import BaseInfo
-from src.models.faculty import Faculty
-from src.models.graduate_school import GraduateSchool
+from models.base_info import BaseInfo
+from models.faculty import Faculty
+from models.graduate_school import GraduateSchool
 
 
 class School(BaseInfo):

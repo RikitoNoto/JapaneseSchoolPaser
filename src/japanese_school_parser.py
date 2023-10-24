@@ -5,8 +5,8 @@ from openpyxl import load_workbook
 from openpyxl.workbook import Workbook
 from openpyxl.worksheet.worksheet import Worksheet
 
-from src.models.school import School
-from src.parser.school_parser import SchoolParser
+from models.school import School
+from parser.school_parser import SchoolParser
 
 
 def parse_schools_to_dict(path: str) -> dict[str, Any]:
@@ -39,4 +39,4 @@ if __name__ == "__main__":
     import sys
 
     args = sys.argv
-    output_json(args[0], args[1])
+    output_json(args[1], args[2])

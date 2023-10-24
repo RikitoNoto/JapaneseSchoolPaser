@@ -1,8 +1,8 @@
 from openpyxl.worksheet.worksheet import Worksheet
 import pytest
-from src.models.graduate_school import GraduateSchool
-from src.parser.graduate_school_parser import GraduateSchoolParser
-from src.parser.parser import Parser
+from models.graduate_school import GraduateSchool
+from parser.graduate_school_parser import GraduateSchoolParser
+from parser.parser import Parser
 from tests.parser.single_sheet_test_base import SingleSheetTestBase
 
 
