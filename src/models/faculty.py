@@ -1,4 +1,7 @@
-class Department:
+from models.model import Model
+
+
+class Department(Model):
     def __init__(self, name: str) -> None:
         self.__name: str = name
         pass
@@ -8,7 +11,7 @@ class Department:
         return self.__name
 
 
-class Faculty:
+class Faculty(Model):
     def __init__(self, name: str, departments: list[Department]) -> None:
         self.__name: str = name
         self.__departments: list[Department] = departments

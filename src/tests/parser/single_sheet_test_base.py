@@ -5,7 +5,7 @@ import os
 import pytest
 from typing import Generic, TypeVar
 
-from src.parser.parser import Parser
+from parser.parser import Parser
 
 T = TypeVar("T")
 
