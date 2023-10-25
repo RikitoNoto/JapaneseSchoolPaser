@@ -22,5 +22,5 @@ jobs:
 
     - name: Run pytest
       run: |
-      cd src
-      pytest tests
+        cd src
+        pytest tests
