@@ -22,7 +22,7 @@ jobs:
 
     - name: Run pytest
       env:
-        PYTHONPATH=../src
+        PYTHONPATH: ../src
       run: |
         cd src/tests
         pytest
