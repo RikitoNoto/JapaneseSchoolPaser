@@ -1,0 +1,38 @@
+name: ファイル出力
+
+on: workflow_dispatch
+
+jobs:
+  output:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Output
+      run: |
+        cd src
+        mkdir -p assets/outputs
+        find assets/inputs/*.xlsx -type f -exec python japanese_school_parser.py {} assets/outputs/{}.json ;
+
+    - name: Commit and push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
+        git config --global user.name "GITHUB_ACTOR"
+        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git add .
+        git commit -m "[自動生成]パース出力"
+        git push origin HEAD:develop
