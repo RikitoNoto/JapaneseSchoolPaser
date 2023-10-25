@@ -13,6 +13,7 @@ T = TypeVar("T")
 class SingleSheetTestBase(ABC, Generic[T]):
     EXCEL_FILE_PATH_1 = f"{os.path.dirname(__file__)}/files/single_sheet_file1.xlsx"
     EXCEL_FILE_PATH_2 = f"{os.path.dirname(__file__)}/files/single_sheet_file2.xlsx"
+    EXCEL_FILE_PATH_3 = f"{os.path.dirname(__file__)}/files/single_sheet_file3.xlsx"
     __book: openpyxl.Workbook
 
     def setup_method(self, method):

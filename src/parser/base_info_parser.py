@@ -1,10 +1,14 @@
+import re
+
 from typing import Optional
 from openpyxl.cell.cell import Cell
-from models.base_info import BaseInfo
+from models.base_info import BaseInfo, SchoolClassification
 from parser.parser import Parser
 
 
 class BaseInfoParser(Parser):
+    TITLE_CELL: dict[str, int] = {"row": 1, "column": 2}
+
     def parse(self) -> BaseInfo:
         """
         学校コードのセルを基準にデータを検索しパースする。
@@ -20,6 +24,13 @@ class BaseInfoParser(Parser):
 
         name = self._sheet.title  # シート名が大学名
 
+        title = self._sheet.cell(**self.TITLE_CELL).value
+        classification: Optional[SchoolClassification] = None
+        classification_match: Optional[re.Match[str]] = re.search(r"(.*?) ", title)
+        if classification_match:
+            classification_str = classification_match.group(1)
+            classification = SchoolClassification.from_str(classification_str)
+
         return BaseInfo(
             name=name,
             school_code=self._sheet.cell(
@@ -28,4 +39,5 @@ class BaseInfoParser(Parser):
             president=self._sheet.cell(
                 row=base_cell.row + 1, column=base_cell.column + 1
             ).value,
+            classification=classification,
         )
