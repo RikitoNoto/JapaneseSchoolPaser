@@ -23,6 +23,7 @@ jobs:
     - name: Output
       run: |
         mkdir -p assets/outputs
+        find assets/outputs -name *.xlsx -type f -exec rm {} \;
         cd src
         find ../assets/inputs/ -name *.xlsx -type f -exec sh -c 'python japanese_school_parser.py "$0" "../assets/outputs/$(basename "$0" .xlsx).json"' {} \;
 
