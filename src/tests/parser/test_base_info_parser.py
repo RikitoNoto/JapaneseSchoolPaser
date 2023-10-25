@@ -1,6 +1,6 @@
 from openpyxl.worksheet.worksheet import Worksheet
 import pytest
-from models.base_info import BaseInfo
+from models.base_info import BaseInfo, SchoolClassification
 from parser.base_info_parser import BaseInfoParser
 from parser.parser import Parser
 from tests.parser.single_sheet_test_base import SingleSheetTestBase
@@ -42,3 +42,15 @@ class TestBaseInfoParser(SingleSheetTestBase[BaseInfo]):
     def test_should_parse_school_name(self, path: str, exp: str):
         base_info = self.parse(path)
         assert base_info.name == exp
+
+    @pytest.mark.parametrize(
+        "path, exp",
+        [
+            (SingleSheetTestBase.EXCEL_FILE_PATH_1, SchoolClassification.NATIONAL),
+            (SingleSheetTestBase.EXCEL_FILE_PATH_2, SchoolClassification.PRIVATE),
+            (SingleSheetTestBase.EXCEL_FILE_PATH_3, SchoolClassification.PUBLIC),
+        ],
+    )
+    def test_should_parse_school_classification(self, path: str, exp: str):
+        base_info = self.parse(path)
+        assert base_info.classification == exp
