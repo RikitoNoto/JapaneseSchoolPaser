@@ -5,6 +5,7 @@ from japanese_school_parser import parse_schools_to_dict, parse_schools_to_model
 from models.faculty import Department, Faculty
 from models.graduate_school import GraduateSchool, Major
 from models.school import School
+from src.models.base_info import SchoolClassification
 
 
 def major_equal(major1: Major, major2: Major) -> bool:
@@ -142,6 +143,7 @@ def school_list_equal(school_list1: list[School], school_list2: list[School]) ->
                     name="京都精華大学",
                     school_code="F126310107644",
                     president="ウスビ・サコ",
+                    classification=SchoolClassification.PRIVATE,
                     faculties=[
                         Faculty(
                             name="芸術学部",
@@ -247,6 +249,7 @@ def school_list_equal(school_list1: list[School], school_list2: list[School]) ->
                     name="明治国際医療大学",
                     school_code="F126310107653",
                     president="矢野　忠",
+                    classification=SchoolClassification.PRIVATE,
                     faculties=[
                         Faculty(
                             name="鍼灸学部",
@@ -312,6 +315,7 @@ def test_should_be_parse_model(source_path: str, expect_schools: list[School]):
                         "name": "京都精華大学",
                         "school_code": "F126310107644",
                         "president": "ウスビ・サコ",
+                        "classification": "私立",
                         "faculties": [
                             {
                                 "name": "芸術学部",
@@ -417,6 +421,7 @@ def test_should_be_parse_model(source_path: str, expect_schools: list[School]):
                         "name": "明治国際医療大学",
                         "school_code": "F126310107653",
                         "president": "矢野　忠",
+                        "classification": "私立",
                         "faculties": [
                             {
                                 "name": "鍼灸学部",

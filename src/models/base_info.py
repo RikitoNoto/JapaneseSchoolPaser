@@ -24,6 +24,12 @@ class BaseInfo(Model):
         self.__president: str = president
         self.__classification: Optional[SchoolClassification] = classification
 
+    def _register_base_info(self, base_info):
+        self.__name = base_info.name
+        self.__school_code: str = base_info.school_code
+        self.__president: str = base_info.president
+        self.__classification: Optional[SchoolClassification] = base_info.classification
+
     @property
     def name(self) -> str:
         return self.__name
