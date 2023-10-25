@@ -24,7 +24,7 @@ jobs:
       run: |
         mkdir -p assets/outputs
         cd src
-        find ../assets/inputs/*.xlsx -type f -exec python japanese_school_parser.py {} ../assets/outputs/{}.json \;
+        find ../assets/inputs/ -name *.xlsx -type f -exec sh -c 'python japanese_school_parser.py "$0" "../assets/outputs/$(basename "$0" .xlsx).json"' {} \;
 
     - name: Commit and push
       env:
