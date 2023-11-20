@@ -1,6 +1,6 @@
 from openpyxl.worksheet.worksheet import Worksheet
 import pytest
-from models.faculty import Department, Faculty
+from models.faculty import Faculty
 from parser.faculty_parser import FacultyParser
 from parser.parser import Parser
 from tests.parser.single_sheet_test_base import SingleSheetTestBase

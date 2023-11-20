@@ -141,6 +141,7 @@ def school_list_equal(school_list1: list[School], school_list2: list[School]) ->
             [
                 School(
                     name="京都精華大学",
+                    name_en="Kyoto　Seika　University",
                     school_code="F126310107644",
                     president="ウスビ・サコ",
                     classification=SchoolClassification.PRIVATE,
@@ -247,6 +248,7 @@ def school_list_equal(school_list1: list[School], school_list2: list[School]) ->
                 ),
                 School(
                     name="明治国際医療大学",
+                    name_en="Meiji　University　of　Integrative　Medicine",
                     school_code="F126310107653",
                     president="矢野　忠",
                     classification=SchoolClassification.PRIVATE,
@@ -313,6 +315,7 @@ def test_should_be_parse_model(source_path: str, expect_schools: list[School]):
                 "schools": [
                     {
                         "name": "京都精華大学",
+                        "name_en": "Kyoto　Seika　University",
                         "school_code": "F126310107644",
                         "president": "ウスビ・サコ",
                         "classification": "私立",
@@ -419,6 +422,7 @@ def test_should_be_parse_model(source_path: str, expect_schools: list[School]):
                     },
                     {
                         "name": "明治国際医療大学",
+                        "name_en": "Meiji　University　of　Integrative　Medicine",
                         "school_code": "F126310107653",
                         "president": "矢野　忠",
                         "classification": "私立",

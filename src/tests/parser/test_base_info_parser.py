@@ -54,3 +54,15 @@ class TestBaseInfoParser(SingleSheetTestBase[BaseInfo]):
     def test_should_parse_school_classification(self, path: str, exp: str):
         base_info = self.parse(path)
         assert base_info.classification == exp
+
+    @pytest.mark.parametrize(
+        "path, exp",
+        [
+            (SingleSheetTestBase.EXCEL_FILE_PATH_1, "Hokkaido University"),
+            (SingleSheetTestBase.EXCEL_FILE_PATH_2, "Nagoya　Bunri　University"),
+            (SingleSheetTestBase.EXCEL_FILE_PATH_3, "Fukushima Medical University"),
+        ],
+    )
+    def test_should_parse_school_name_en(self, path: str, exp: str):
+        base_info = self.parse(path)
+        assert base_info.name_en == exp
