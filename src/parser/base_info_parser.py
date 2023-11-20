@@ -25,14 +25,23 @@ class BaseInfoParser(Parser):
         name = self._sheet.title  # シート名が大学名
 
         title = self._sheet.cell(**self.TITLE_CELL).value
+
         classification: Optional[SchoolClassification] = None
-        classification_match: Optional[re.Match[str]] = re.search(r"(.*?) ", title)
+        classification_match: Optional[re.Match[str]] = re.search(
+            r"(.*?) ", title
+        )  # 最初の空白より前が大学種
         if classification_match:
             classification_str = classification_match.group(1)
             classification = SchoolClassification.from_str(classification_str)
 
+        name_en: str = ""
+        name_en_match: Optional[re.Match[str]] = re.search(r"（(.*?)）", title)  # 括弧の中が英名
+        if name_en_match:
+            name_en = name_en_match.group(1)
+
         return BaseInfo(
             name=name,
+            name_en=name_en,
             school_code=self._sheet.cell(
                 row=base_cell.row + 1, column=base_cell.column
             ).value,

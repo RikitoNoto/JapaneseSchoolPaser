@@ -17,22 +17,28 @@ class SchoolClassification(Enum):
 
 class BaseInfo(Model):
     def __init__(
-        self, name="", school_code="", president="", classification=None
+        self, name="", name_en="", school_code="", president="", classification=None
     ) -> None:
         self.__name = name
         self.__school_code: str = school_code
         self.__president: str = president
         self.__classification: Optional[SchoolClassification] = classification
+        self.__name_en: str = name_en
 
     def _register_base_info(self, base_info):
         self.__name = base_info.name
         self.__school_code: str = base_info.school_code
         self.__president: str = base_info.president
         self.__classification: Optional[SchoolClassification] = base_info.classification
+        self.__name_en: str = base_info.name_en
 
     @property
     def name(self) -> str:
         return self.__name
+
+    @property
+    def name_en(self) -> str:
+        return self.__name_en
 
     @property
     def classification(self) -> SchoolClassification:
